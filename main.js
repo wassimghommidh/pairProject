@@ -25,6 +25,7 @@ Draw.addClass( "draw" );
 var numberDraw=0
 Draw.text("Draw :"+ numberDraw)
 Draw.appendTo(body)
+
     $('#b1').click(function() {
     var rand=Math.floor(Math.random()*3)
     $("#fest_left").attr("src",arrLeft[0])
@@ -42,23 +43,10 @@ Draw.appendTo(body)
    else if(rand===2){
        numberLose++
        Lose.text("Lose :"+ numberLose)}
-    
-//         if(numberWin===3){
-//             final.appendTo(body)
-           
-//             }
-//             else if(numberLose===3){
-//                 final.appendTo(body)
-//             }
-//             else if(numberDraw===3){
-//              final.appendTo(body)
-//             }
-       
-   
-   
-// }
-   }
-)
+
+    } )
+
+
    $('#b2').click(function() {
        var rand1=Math.floor(Math.random()*3)
        $("#fest_left").attr("src",arrLeft[1])
@@ -75,10 +63,9 @@ Draw.appendTo(body)
        numberWin++
        win.text("Win :"+ numberWin)
        }
-
-       }
+       })
    
-       )
+       
    $('#b3').click(function() {
        var rand2=Math.floor(Math.random()*3)
        $("#fest_left").attr("src",arrLeft[2])
@@ -96,19 +83,40 @@ Draw.appendTo(body)
            Draw.text("Draw :"+ numberDraw)
           }
        })
-       var finalmes=$("<h1></h1>")
-       finalmes.attr("id","finalmes")
+    
        
-       var final=$('<button>Play again</button>')
-       final.attr("id","b4")
+       var final=$('<button id="b4" onclick=rePlayer()>Play again</button>')
+       final.addClass('result')
        
-       if(numberWin===3){
-           final.appendTo(body)
-           }
-           else if(numberLose===3){
+       function rePlayer(){
+               window.location.reload()       
+            }
+            var finalmes=$("<h1></h1>")
+            finalmes.addClass("test")
+           
+           
+            $(".buttons").click(function(){
+           if(numberWin===3){
+               finalmes.text("You won")
+               finalmes.appendTo(body)
                final.appendTo(body)
-           }
-           else if(numberDraw===3){
-            final.appendTo(body)
-           }
+               $(".buttons").empty()
+               }
+               else if(numberLose===3){
+                   finalmes.text("You lost")
+                   finalmes.appendTo(body)
+                   final.appendTo(body)
+                   $(".buttons").empty()
+
+               }
+               else if(numberDraw===3){
+               finalmes.text("You drew")
+               finalmes.appendTo(body)
+               final.appendTo(body)
+                 $(".buttons").empty()
+               }
+
+       })
        
+
+   
